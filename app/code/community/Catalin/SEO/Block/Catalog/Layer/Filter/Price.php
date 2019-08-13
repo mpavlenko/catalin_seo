@@ -19,7 +19,7 @@ class Catalin_SEO_Block_Catalog_Layer_Filter_Price extends Mage_Catalog_Block_La
 
     /**
      * Class constructor
-     * 
+     *
      * Set correct template depending on module state
      */
     public function __construct()
@@ -54,7 +54,7 @@ class Catalin_SEO_Block_Catalog_Layer_Filter_Price extends Mage_Catalog_Block_La
 
     /**
      * Get current minimum price filter
-     * 
+     *
      * @return float
      */
     public function getCurrentMinPriceFilter()
@@ -71,13 +71,13 @@ class Catalin_SEO_Block_Catalog_Layer_Filter_Price extends Mage_Catalog_Block_La
 
     /**
      * Get current maximum price filter
-     * 
+     *
      * @return float
      */
     public function getCurrentMaxPriceFilter()
     {
         list($from, $to) = $this->_filter->getInterval();
-        $to = floor((float) $to);
+        $to = round((float) $to);
 
         if ($to == 0 || $to > $this->getMaxPriceFloat()) {
             return $this->getMaxPriceFloat();
@@ -88,7 +88,7 @@ class Catalin_SEO_Block_Catalog_Layer_Filter_Price extends Mage_Catalog_Block_La
 
     /**
      * URL Pattern used in javascript for price filtering
-     * 
+     *
      * @return string
      */
     public function getUrlPattern()
@@ -99,22 +99,6 @@ class Catalin_SEO_Block_Catalog_Layer_Filter_Price extends Mage_Catalog_Block_La
             ->setCount(0);
 
         return $item->getUrl();
-    }
-
-    /**
-     * Check if price slider can be rendered with a button
-     * 
-     * @return boolean
-     */
-    public function isSubmitTypeButton()
-    {
-        $type = $this->helper('catalin_seo')->getPriceSliderSubmitType();
-
-        if ($type == Catalin_SEO_Model_System_Config_Source_Slider_Submit_Type::SUBMIT_BUTTON) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

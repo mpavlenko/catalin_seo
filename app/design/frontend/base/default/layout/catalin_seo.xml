@@ -4,11 +4,15 @@
         <reference name="head">
             <action method="addItem">
                 <type>skin_css</type>
-                <name>css/price_slider/style.css</name>
+                <name>css/catalin_seo/style.css</name>
             </action>
             <action method="addItem">
                 <type>skin_js</type>
                 <name>js/catalin_seo/native.history.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/catalin_seo/handler.js</name>
             </action>
         </reference>
         <reference name="product_list_toolbar">
@@ -25,23 +29,27 @@
             </action>
         </reference>
     </catalog_category_layered>
-    
+
     <catalog_category_layered_ajax_layer>
         <remove name="right"/>
         <remove name="header"/>
         <remove name="head"/>
         <remove name="footer"/>
     </catalog_category_layered_ajax_layer>
-    
+
     <catalogsearch_result_index>
         <reference name="head">
             <action method="addItem">
                 <type>skin_css</type>
-                <name>css/price_slider/style.css</name>
+                <name>css/catalin_seo/style.css</name>
             </action>
             <action method="addItem">
                 <type>skin_js</type>
                 <name>js/catalin_seo/native.history.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/catalin_seo/handler.js</name>
             </action>
         </reference>
         <reference name="search_result_list">

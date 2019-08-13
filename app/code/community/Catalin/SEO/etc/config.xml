@@ -25,6 +25,7 @@
             <catalog_resource>
                 <rewrite>
                     <layer_filter_attribute>Catalin_SEO_Model_Catalog_Resource_Layer_Filter_Attribute</layer_filter_attribute>
+                    <layer_filter_price>Catalin_SEO_Model_Catalog_Resource_Layer_Filter_Price</layer_filter_price>
                 </rewrite>
             </catalog_resource>
             <catalin_seo>
@@ -119,8 +120,6 @@
                 <enabled>1</enabled>
                 <ajax_enabled>1</ajax_enabled>
                 <price_slider>1</price_slider>
-                <price_slider_submit_type>2</price_slider_submit_type>
-                <price_slider_delay>3</price_slider_delay>
                 <multiple_choise_filters>1</multiple_choise_filters>
                 <routing_suffix>filter</routing_suffix>
             </catalog>

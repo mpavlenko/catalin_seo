@@ -42,7 +42,7 @@ class Catalin_SEO_Model_Resource_Indexer_Attribute extends Mage_Index_Model_Reso
 
     /**
      * Generate SEO values for catalog product attributes options
-     * 
+     *
      * @param int $attributeId - transmit this to limit processing to one specific attribute
      * @return Catalin_SEO_Model_Resource_Indexer_Attribute
      */
@@ -72,7 +72,7 @@ class Catalin_SEO_Model_Resource_Indexer_Attribute extends Mage_Index_Model_Reso
 
     /**
      * Save data into database
-     * 
+     *
      * @param array $data
      * @param array $deleteWhere
      */
@@ -139,6 +139,21 @@ class Catalin_SEO_Model_Resource_Indexer_Attribute extends Mage_Index_Model_Reso
             // Generate url key
             $urlKey = $this->_getHelper()->transliterate($option['label']);
 
+            // Check if this url key is taken and add -{count}
+            $count = 0;
+            $origUrlKey = $urlKey;
+            do {
+                $found = false;
+                foreach ($data as $line) {
+                    if ($line['url_key'] == $urlKey) {
+                        $found = true;
+                    }
+                }
+                if ($found) {
+                    $urlKey = $origUrlKey . '-' . ++$count;
+                }
+            } while ($found);
+
             $data[] = array(
                 'attribute_code' => $attribute->getAttributeCode(),
                 'attribute_id' => $attribute->getId(),
@@ -185,7 +200,7 @@ class Catalin_SEO_Model_Resource_Indexer_Attribute extends Mage_Index_Model_Reso
 
     /**
      * Reindex attribute options on attribute save event
-     * 
+     *
      * @param Mage_Index_Model_Event $event
      * @return Catalin_SEO_Model_Resource_Indexer_Attribute
      */

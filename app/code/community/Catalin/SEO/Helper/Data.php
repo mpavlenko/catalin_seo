@@ -72,26 +72,6 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
     }
 
     /**
-     * Retrieve price slider delay in seconds.
-     * 
-     * @return integer
-     */
-    public function getPriceSliderDelay()
-    {
-        return Mage::getStoreConfig('catalin_seo/catalog/price_slider_delay');
-    }
-
-    /**
-     * Retrieve how price slider will be submitted (button or delayed auto submit)
-     * 
-     * @return int
-     */
-    public function getPriceSliderSubmitType()
-    {
-        return (int) Mage::getStoreConfig('catalin_seo/catalog/price_slider_submit_type');
-    }
-
-    /**
      * Retrieve routing suffix
      * 
      * @return string

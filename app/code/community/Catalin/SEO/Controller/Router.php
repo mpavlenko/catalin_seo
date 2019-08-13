@@ -119,7 +119,7 @@ class Catalin_SEO_Controller_Router extends Mage_Core_Controller_Varien_Router_S
                 }
             }
             // Add post params to parsed ones from url
-            // Usefull to easily override params
+            // Useful to easily override params
             $layerParams += $request->getPost();
             // Add params to request
             $request->setParams($layerParams);
