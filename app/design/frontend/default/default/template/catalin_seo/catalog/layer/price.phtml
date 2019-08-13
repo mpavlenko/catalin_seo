@@ -15,27 +15,28 @@
 <?php endif; ?>
 
 <script type="text/javascript">
-    var maxPriceInt = <?php echo $this->getMaxPriceInt(); ?>;
-    <?php if (!$this->isSubmitTypeButton()): ?>
-    var timerSlider = null;
-    var priceSliderDelay = <?php echo $this->helper('catalin_seo')->getPriceSliderDelay() * 1000 ?>;
-    <?php endif; ?>
+    priceSliderUrlTemplate = '<?php echo $this->getUrlPattern(); ?>';
     
+    <?php if (!$this->getRequest()->isAjax()): ?>
     function handlePriceEvent(val) {
         if (val) {
-            var link = '<?php echo $this->getUrlPattern(); ?>';
-            link = link.replace('__PRICE_VALUE__', val);
+            var url = priceSliderUrlTemplate.replace('__PRICE_VALUE__', val);
             <?php if ($this->helper('catalin_seo')->isAjaxEnabled()): ?>
-            handleEvent(link);
+            handleEvent(url);
             <?php else: ?>
-            window.location.href = link;    
+            window.location.href = url;    
             <?php endif; ?>
         }
     }
-        
-    var handles = [$('price-min'), $('price-max')];
+    <?php endif; ?>
+    
+    maxPriceInt = <?php echo $this->getMaxPriceInt(); ?>;
+    <?php if (!$this->isSubmitTypeButton()): ?>
+    timerSlider = null;
+    priceSliderDelay = <?php echo $this->helper('catalin_seo')->getPriceSliderDelay() * 1000 ?>;
+    <?php endif; ?>
     // horizontal slider control with preset values
-    new Control.Slider(handles, 'price-range', {
+    new Control.Slider([$('price-min'), $('price-max')], 'price-range', {
         range: $R(0, maxPriceInt, false),
         sliderValue: [0, maxPriceInt],
         values: [

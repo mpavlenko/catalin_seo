@@ -75,6 +75,11 @@ class Catalin_Seo_CategoryController extends Mage_Catalog_CategoryController
             if ($this->getRequest()->isAjax()) {
                 $listing = $this->getLayout()->getBlock('product_list')->toHtml();
                 $layer = $this->getLayout()->getBlock('catalog.leftnav')->toHtml();
+                
+                // Fix urls that contain '___SID=U'
+                $urlModel = Mage::getSingleton('core/url');
+                $listing = $urlModel->sessionUrlVar($listing);
+                $layer = $urlModel->sessionUrlVar($layer);
 
                 $response = array(
                     'listing' => $listing,

@@ -140,7 +140,7 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
      * @param array $q            array with values to add to query string
      * @return string
      */
-    public function getFilterUrl(array $filters, $escape = true, $noFilters = false, array $q = array())
+    public function getFilterUrl(array $filters, $noFilters = false, array $q = array())
     {
         $query = array(
             'isLayerAjax' => null, // this needs to be removed because of ajax request
@@ -153,12 +153,9 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
             '_current' => true,
             '_use_rewrite' => true,
             '_query' => $query,
-            '_nosid' => true,
+            '_escape' => true,
         );
-        // If we should escape or not
-        if ($escape) {
-            $params['_escape'] = true;
-        }
+
         $url = Mage::getUrl('*/*/*', $params);
         $urlPath = '';
 
@@ -170,6 +167,11 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
                 $value = str_replace(urlencode(self::MULTIPLE_FILTERS_DELIMITER), self::MULTIPLE_FILTERS_DELIMITER, urlencode($value));
                 $urlPath .= "/{$key}/{$value}";
             }
+        }
+        
+        // Skip adding routing suffix for links with no filters
+        if (empty($urlPath)) {
+            return $url;
         }
 
         $urlParts = explode('?', $url);
@@ -194,7 +196,7 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
      */
     public function getClearFiltersUrl()
     {
-        return $this->getFilterUrl(array(), true, true);
+        return $this->getFilterUrl(array(), true);
     }
 
     /**
@@ -205,7 +207,7 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
      */
     public function getPagerUrl(array $query)
     {
-        return $this->getFilterUrl(array(), true, false, $query);
+        return $this->getFilterUrl(array(), false, $query);
     }
 
     /**

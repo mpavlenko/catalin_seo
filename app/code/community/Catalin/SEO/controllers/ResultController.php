@@ -65,6 +65,11 @@ class Catalin_Seo_ResultController extends Mage_CatalogSearch_ResultController
             if ($this->getRequest()->isAjax()) {
                 $listing = $this->getLayout()->getBlock('search_result_list')->toHtml();
                 $layer = $this->getLayout()->getBlock('catalogsearch.leftnav')->toHtml();
+                
+                // Fix urls that contain '___SID=U'
+                $urlModel = Mage::getSingleton('core/url');
+                $listing = $urlModel->sessionUrlVar($listing);
+                $layer = $urlModel->sessionUrlVar($layer);
 
                 $response = array(
                     'listing' => $listing,

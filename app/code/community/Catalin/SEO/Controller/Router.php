@@ -97,10 +97,12 @@ class Catalin_SEO_Controller_Router extends Mage_Core_Controller_Varien_Router_S
             }
             
             // Set the required data on $request object
-            $request->setPathInfo($catPath);
+            $request->setPathInfo($urlRewrite->getTargetPath());
+            $request->setRequestUri('/' . $urlRewrite->getTargetPath());
             $request->setModuleName('catalog')
                 ->setControllerName('category')
                 ->setActionName('view')
+                ->setControllerModule($realModule)
                 ->setParam('id', $urlRewrite->getCategoryId())
                 ->setAlias(
                     Mage_Core_Model_Url_Rewrite::REWRITE_REQUEST_PATH_ALIAS, $catPath

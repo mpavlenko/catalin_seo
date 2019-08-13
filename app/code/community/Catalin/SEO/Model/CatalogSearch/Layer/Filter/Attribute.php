@@ -18,13 +18,14 @@ class Catalin_SEO_Model_CatalogSearch_Layer_Filter_Attribute extends Catalin_SEO
 {
 
     /**
-     * Set filter model name
+     * Check whether specified attribute can be used in LN
      *
+     * @param Mage_Catalog_Model_Resource_Eav_Attribute  $attribute
+     * @return bool
      */
-    public function __construct()
+    protected function _getIsFilterableAttribute($attribute)
     {
-        parent::__construct();
-        $this->_filterModelName = 'catalogsearch/layer_filter_attribute';
+        return $attribute->getIsFilterableInSearch();
     }
 
 }

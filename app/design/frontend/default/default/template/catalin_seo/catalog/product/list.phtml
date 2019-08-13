@@ -129,28 +129,28 @@
     }
     
     function handleEvent(el, event) {
-        var link;
+        var url, fullUrl;
         if (typeof el === 'string') {
-            link = el;
+            url = el;
         } else if (el.tagName.toLowerCase() === 'a') {
-            link = $(el).readAttribute('href');
+            url = $(el).readAttribute('href');
         } else if (el.tagName.toLowerCase() === 'select') {
-            link = $(el).getValue();
+            url = $(el).getValue();
         }
 
         <?php // Add this to query string for full page caching systems ?>
-        if (link.indexOf('?') != -1) {
-            link = link + '&isLayerAjax=1';
+        if (url.indexOf('?') != -1) {
+            fullUrl = url + '&isLayerAjax=1';
         } else {
-            link = link + '?isLayerAjax=1';
+            fullUrl = url + '?isLayerAjax=1';
         }
         
         $('loading').show();
         $('ajax-errors').hide();
         
-        pushState(null, link, false);
+        pushState(null, url, false);
         
-        new Ajax.Request(link, {
+        new Ajax.Request(fullUrl, {
             method: 'get',
             onSuccess: function(transport) {
                 if (transport.responseJSON) {                    
@@ -159,7 +159,7 @@
                     pushState({
                         listing: transport.responseJSON.listing,
                         layer: transport.responseJSON.layer
-                    }, link, true);
+                    }, url, true);
                     ajaxListener();
                 } else {
                     $('ajax-errors').show();
@@ -167,6 +167,7 @@
                 $('loading').hide();
             }
         });
+        
         if (event) {
             event.preventDefault();
         }

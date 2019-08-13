@@ -59,7 +59,7 @@ class Catalin_SEO_Model_Catalog_Layer_Filter_Item extends Mage_Catalog_Model_Lay
 
         return $this->_helper()->getFilterUrl(array(
             $this->getFilter()->getRequestVar() => $values
-        ), false);
+        ));
     }
 
     /**
