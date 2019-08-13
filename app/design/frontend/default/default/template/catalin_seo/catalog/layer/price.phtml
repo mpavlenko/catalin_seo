@@ -4,8 +4,8 @@
 </div>
 <ul>
     <li>
-        <span id="price-min-display">0</span>
-        <span style="float: right;" id="price-max-display"><?php echo $this->getMaxPriceInt(); ?></span>
+        <span id="price-min-display"><?php echo $this->getCurrentMinPriceFilter(); ?></span>
+        <span style="float: right;" id="price-max-display"><?php echo $this->getCurrentMaxPriceFilter(); ?></span>
     </li>
 </ul>
 <?php if ($this->isSubmitTypeButton()): ?>
@@ -30,24 +30,21 @@
     }
     <?php endif; ?>
     
-    maxPriceInt = <?php echo $this->getMaxPriceInt(); ?>;
+    maxPriceInt = <?php echo $this->getMaxPriceFloat(); ?>;
+    minPriceInt = <?php echo $this->getMinPriceFloat(); ?>;
     <?php if (!$this->isSubmitTypeButton()): ?>
     timerSlider = null;
     priceSliderDelay = <?php echo $this->helper('catalin_seo')->getPriceSliderDelay() * 1000 ?>;
     <?php endif; ?>
     // horizontal slider control with preset values
     new Control.Slider([$('price-min'), $('price-max')], 'price-range', {
-        range: $R(0, maxPriceInt, false),
-        sliderValue: [0, maxPriceInt],
-        values: [
-            <?php for ($i = 0; $i <= $this->getMaxPriceInt(); $i++): ?>
-                <?php echo $i ?><?php echo ($i == $this->getMaxPriceInt()) ? '' : ',' ?>
-            <?php endfor; ?>
-        ],
+        range: $R(minPriceInt, maxPriceInt),
+        sliderValue: [<?php echo $this->getCurrentMinPriceFilter(); ?>, <?php echo $this->getCurrentMaxPriceFilter(); ?>],
+        values: $R(minPriceInt, maxPriceInt),
 
         restricted: true,
         onChange: function(val){
-            if (val[0] != 0 || val[1] != maxPriceInt) {
+            if (val[0] != <?php echo $this->getCurrentMinPriceFilter(); ?> || val[1] != <?php echo $this->getCurrentMaxPriceFilter(); ?>) {
                 <?php if ($this->isSubmitTypeButton()): ?>
                     $('button-price-slider').value = val.join('-');
                 <?php else: ?>

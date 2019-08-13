@@ -70,9 +70,6 @@ class Catalin_SEO_Model_Resource_Attribute_Urlkey extends Mage_Core_Model_Resour
      * Retrieve options url keys for specific attribute
      * Use this as it caches for each attribute all possible values
      * 
-     * @todo Implement a method to detect all available filters and
-     *       the ones used so we can do just one query - Ideal case
-     * 
      * @param int $attributeId
      * @param int $storeId
      * @return array
