@@ -11,7 +11,7 @@
  * http://opensource.org/licenses/osl-3.0.php
  *
  * @package     Catalin_Seo
- * @copyright   Copyright (c) 2013 Catalin Ciobanu
+ * @copyright   Copyright (c) 2015 Catalin Ciobanu
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 require_once 'Mage/Catalog/controllers/CategoryController.php';
@@ -73,8 +73,15 @@ class Catalin_Seo_CategoryController extends Mage_Catalog_CategoryController
 
             // return json formatted response for ajax
             if ($this->getRequest()->isAjax()) {
+                
+                if(Mage::getEdition() == Mage::EDITION_ENTERPRISE){
+                    $block = $this->getLayout()->getBlock('enterprisecatalog.leftnav');
+                } else {
+                    $block = $this->getLayout()->getBlock('catalog.leftnav');
+                }
+                
                 $listing = $this->getLayout()->getBlock('product_list')->toHtml();
-                $layer = $this->getLayout()->getBlock('catalog.leftnav')->toHtml();
+                $layer = $block->toHtml();
                 
                 // Fix urls that contain '___SID=U'
                 $urlModel = Mage::getSingleton('core/url');

@@ -11,21 +11,20 @@
  * http://opensource.org/licenses/osl-3.0.php
  *
  * @package     Catalin_Seo
- * @copyright   Copyright (c) 2015 Catalin Ciobanu
+ * @copyright   Copyright (c) 2013 Catalin Ciobanu
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Catalin_SEO_Model_CatalogSearch_Layer_Filter_Attribute extends Catalin_SEO_Model_Catalog_Layer_Filter_Attribute
+class Catalin_SEO_Block_Enterprise_CatalogSearch_Layer_Filter_Attribute extends Catalin_SEO_Block_Enterprise_Catalog_Layer_Filter_Attribute
 {
 
     /**
-     * Check whether specified attribute can be used in LN
+     * Set filter model name
      *
-     * @param Mage_Catalog_Model_Resource_Eav_Attribute  $attribute
-     * @return bool
      */
-    protected function _getIsFilterableAttribute($attribute)
+    public function __construct()
     {
-        return $attribute->getIsFilterableInSearch();
+        parent::__construct();
+        $this->_filterModelName = 'enterprise_search/catalog_layer_filter_attribute';
     }
 
 }
