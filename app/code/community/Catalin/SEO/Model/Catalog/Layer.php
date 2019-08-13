@@ -26,9 +26,11 @@ class Catalin_SEO_Model_Catalog_Layer extends Mage_Catalog_Model_Layer
     {
         $collection = parent::getFilterableAttributes();
 
-        // Load them at once - one query at once not multiple
-        $attrUrlKeyModel = Mage::getResourceModel('catalin_seo/attribute_urlkey');
-        $attrUrlKeyModel->preloadAttributesOptions($collection);
+        if ($collection instanceof Mage_Catalog_Model_Resource_Product_Attribute_Collection) {
+            // Prealoads all needed attributes at once
+            $attrUrlKeyModel = Mage::getResourceModel('catalin_seo/attribute_urlkey');
+            $attrUrlKeyModel->preloadAttributesOptions($collection);
+        }
 
         return $collection;
     }

@@ -113,6 +113,10 @@ class Catalin_SEO_Model_Resource_Attribute_Urlkey extends Mage_Core_Model_Resour
         foreach ($collection as $attribute) {
             $attributesIds[] = $attribute->getId();
         }
+        
+        if (empty($attributesIds)) {
+            return $this;
+        }
 
         $readAdapter = $this->_getReadAdapter();
         $select = $readAdapter->select()
