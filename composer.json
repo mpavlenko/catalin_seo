@@ -1,7 +1,7 @@
 {
     "name": "OpenMageModuleFostering/Catalin_Seo",
     "type": "magento-module",
-    "license": "OSL",
+    "license": "MIT",
     "homepage": "",
     "description": "Layered Navigation SEO: ajax, seo urls, price slider, multiple filters for the same attribute.",
     "authors": [
