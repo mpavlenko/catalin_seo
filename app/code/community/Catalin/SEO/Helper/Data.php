@@ -150,7 +150,6 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Abstract
             $params['_escape'] = true;
         }
         $url = Mage::getUrl('*/*/*', $params);
-        $url = substr($url, 0, strlen($url) - strlen($suffix));
         $urlPath = '';
 
         if (!$noFilters) {
@@ -165,6 +164,7 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Abstract
 
         $urlParts = explode('?', $url);
 
+        $urlParts[0] = substr($urlParts[0], 0, strlen($urlParts[0]) - strlen($suffix));
         // Add the suffix to the url - fixes when comming from non suffixed pages
         // It should always be the last bits in the URL
         $urlParts[0] .= $this->getRoutingSuffix();
