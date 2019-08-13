@@ -11,6 +11,8 @@
 
 <script type="text/javascript">
     var maxPriceInt = <?php echo $this->getMaxPriceInt(); ?>;
+    var timerSlider = null;
+    var priceSliderDelay = <?php $this->helper('catalin_seo')->getPriceSliderDelay() * 1000 ?>;
     
     function handlePriceEvent(val) {
         var link = '<?php echo $this->getUrlPattern(); ?>';        
@@ -37,8 +39,11 @@
         ],
 
         restricted: true,
-        onChange: function(val){ 
-            handlePriceEvent(val);
+        onChange: function(val){
+            if (timerSlider) {
+                clearTimeout(timerSlider);
+            }
+            timerSlider = setTimeout(handlePriceEvent, priceSliderDelay, val);
         },
         onSlide: function(val){ 
             $('price-max-display').innerHTML = val[1];

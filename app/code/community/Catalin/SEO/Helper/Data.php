@@ -75,6 +75,16 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Abstract
         }
         return Mage::getStoreConfigFlag('catalin_seo/catalog/price_slider');
     }
+    
+    /**
+     * Retrieve price slider delay in seconds.
+     * 
+     * @return integer
+     */
+    public function getPriceSliderDelay()
+    {
+        return Mage::getStoreConfig('catalin_seo/catalog/price_slider_delay');
+    }
 
     /**
      * Getter for layered navigation params
