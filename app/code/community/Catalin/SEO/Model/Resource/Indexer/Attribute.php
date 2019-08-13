@@ -136,12 +136,8 @@ class Catalin_SEO_Model_Resource_Indexer_Attribute extends Mage_Index_Model_Reso
 
         $data = array();
         foreach ($options as $option) {
-            // Replace accents and remove all non-aplhanumerical characters
-            $urlKey = $this->_getHelper()->removeAccents($option['label']);
-            $urlKey = strtolower($urlKey);
-            $urlKey = preg_replace('/([^a-zA-Z0-9])/', '-', $urlKey);
-            $urlKey = preg_replace('/([-]{2,})/', '-', $urlKey);
-            $urlKey = trim($urlKey, '-');
+            // Generate url key
+            $urlKey = $this->_getHelper()->transliterate($option['label']);
 
             $data[] = array(
                 'attribute_code' => $attribute->getAttributeCode(),
