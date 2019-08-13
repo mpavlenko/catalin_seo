@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Catalin_Seo",
+    "type": "magento-module",
+    "license": "OSL",
+    "homepage": "",
+    "description": "ajax, seo urls, price slider, multiple selection for the same attribute.",
+    "authors": [
+    {
+        "name": "Catalin",
+        "email": "ciobanu.catalin@yahoo.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

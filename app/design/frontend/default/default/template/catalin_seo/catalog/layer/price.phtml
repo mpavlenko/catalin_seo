@@ -1,0 +1,48 @@
+<div id="price-range" class="filter-track price-slider">
+    <span id="price-min" class="filter-handle price-slider-from" title="Scroll to set your minimum value"></span>
+    <span id="price-max" class="filter-handle price-slider-to" title="Scroll to set your maximum value"></span>
+</div>
+<ul>
+    <li>
+        <span id="price-min-display">0</span>
+        <span style="float: right;" id="price-max-display"><?php echo $this->getMaxPriceInt(); ?></span>
+    </li>
+</ul>
+
+<script type="text/javascript">
+    var maxPriceInt = <?php echo $this->getMaxPriceInt(); ?>;
+    
+    function handlePriceEvent(val) {
+        var link = '<?php echo $this->getUrlPattern(); ?>';        
+        if (val[0] != 0 || val[1] != maxPriceInt) {
+            var price = val.join('-');
+            link = link.replace('__PRICE_VALUE__', price);
+            <?php if ($this->helper('catalin_seo')->isAjaxEnabled()): ?>
+            handleEvent(link);
+            <?php else: ?>
+            window.location.href = link;    
+            <?php endif; ?>
+        }
+    }
+        
+    var handles = [$('price-min'), $('price-max')];
+    // horizontal slider control with preset values
+    new Control.Slider(handles, 'price-range', {
+        range: $R(0, maxPriceInt, false),
+        sliderValue: [0, maxPriceInt],
+        values: [
+            <?php for ($i = 0; $i <= $this->getMaxPriceInt(); $i++): ?>
+                <?php echo $i ?><?php echo ($i == $this->getMaxPriceInt()) ? '' : ',' ?>
+            <?php endfor; ?>
+        ],
+
+        restricted: true,
+        onChange: function(val){ 
+            handlePriceEvent(val);
+        },
+        onSlide: function(val){ 
+            $('price-max-display').innerHTML = val[1];
+            $('price-min-display').innerHTML = val[0];
+        }
+    });
+</script>
