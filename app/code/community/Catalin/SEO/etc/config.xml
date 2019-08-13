@@ -95,6 +95,7 @@
                 <price_slider>1</price_slider>
                 <price_slider_delay>3</price_slider_delay>
                 <multiple_choise_filters>1</multiple_choise_filters>
+                <routing_suffix>filter</routing_suffix>
             </catalog>
         </catalin_seo>
     </default>

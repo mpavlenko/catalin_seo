@@ -16,15 +16,10 @@
  */
 class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Abstract
 {
-
-    /**
-     * Routing suffix
-     */    
-    const ROUTING_CATEGORY_SUFFIX = '/f';
-    
     /**
      * Delimiter for multiple filters
      */
+
     const MULTIPLE_FILTERS_DELIMITER = ',';
 
     /**
@@ -75,7 +70,7 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Abstract
         }
         return Mage::getStoreConfigFlag('catalin_seo/catalog/price_slider');
     }
-    
+
     /**
      * Retrieve price slider delay in seconds.
      * 
@@ -84,6 +79,16 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Abstract
     public function getPriceSliderDelay()
     {
         return Mage::getStoreConfig('catalin_seo/catalog/price_slider_delay');
+    }
+
+    /**
+     * Retrieve routing suffix
+     * 
+     * @return string
+     */
+    public function getRoutingSuffix()
+    {
+        return '/' . Mage::getStoreConfig('catalin_seo/catalog/routing_suffix');
     }
 
     /**
@@ -145,7 +150,7 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Abstract
             $params['_escape'] = true;
         }
         $url = Mage::getUrl('*/*/*', $params);
-        $url = str_replace($suffix, '', $url);
+        $url = substr($url, 0, strlen($url) - strlen($suffix));
         $urlPath = '';
 
         if (!$noFilters) {
@@ -161,9 +166,8 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Abstract
         $urlParts = explode('?', $url);
 
         // Add the suffix to the url - fixes when comming from non suffixed pages
-        if (stripos($urlParts[0], self::ROUTING_CATEGORY_SUFFIX) === false) {
-            $urlParts[0] .= self::ROUTING_CATEGORY_SUFFIX;
-        }
+        // It should always be the last bits in the URL
+        $urlParts[0] .= $this->getRoutingSuffix();
 
         $url = $urlParts[0] . $urlPath . $suffix;
         if (!empty($urlParts[1])) {
@@ -193,7 +197,7 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return $this->getFilterUrl(array(), true, false, $query);
     }
-    
+
     /**
      * Check if we are in the catalog search
      * 
