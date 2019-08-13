@@ -8,17 +8,23 @@
         <span style="float: right;" id="price-max-display"><?php echo $this->getMaxPriceInt(); ?></span>
     </li>
 </ul>
+<?php if ($this->isSubmitTypeButton()): ?>
+<div class="a-right">
+    <button id="button-price-slider" class="button" onclick="handlePriceEvent(this.value)" value=""><span><span><?php echo $this->__('Update') ?></span></span></button>
+</div>
+<?php endif; ?>
 
 <script type="text/javascript">
     var maxPriceInt = <?php echo $this->getMaxPriceInt(); ?>;
+    <?php if (!$this->isSubmitTypeButton()): ?>
     var timerSlider = null;
     var priceSliderDelay = <?php echo $this->helper('catalin_seo')->getPriceSliderDelay() * 1000 ?>;
+    <?php endif; ?>
     
     function handlePriceEvent(val) {
-        var link = '<?php echo $this->getUrlPattern(); ?>';        
-        if (val[0] != 0 || val[1] != maxPriceInt) {
-            var price = val.join('-');
-            link = link.replace('__PRICE_VALUE__', price);
+        if (val) {
+            var link = '<?php echo $this->getUrlPattern(); ?>';
+            link = link.replace('__PRICE_VALUE__', val);
             <?php if ($this->helper('catalin_seo')->isAjaxEnabled()): ?>
             handleEvent(link);
             <?php else: ?>
@@ -40,10 +46,16 @@
 
         restricted: true,
         onChange: function(val){
-            if (timerSlider) {
-                clearTimeout(timerSlider);
+            if (val[0] != 0 || val[1] != maxPriceInt) {
+                <?php if ($this->isSubmitTypeButton()): ?>
+                    $('button-price-slider').value = val.join('-');
+                <?php else: ?>
+                    if (timerSlider) {
+                        clearTimeout(timerSlider);
+                    }
+                    timerSlider = setTimeout(handlePriceEvent, priceSliderDelay, val.join('-'));
+                <?php endif; ?>
             }
-            timerSlider = setTimeout(handlePriceEvent, priceSliderDelay, val);
         },
         onSlide: function(val){ 
             $('price-max-display').innerHTML = val[1];

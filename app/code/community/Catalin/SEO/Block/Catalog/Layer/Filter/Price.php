@@ -57,4 +57,20 @@ class Catalin_SEO_Block_Catalog_Layer_Filter_Price extends Mage_Catalog_Block_La
         return $item->getUrl();
     }
 
+    /**
+     * Check if price slider can be rendered with a button
+     * 
+     * @return boolean
+     */
+    public function isSubmitTypeButton()
+    {
+        $type = $this->helper('catalin_seo')->getPriceSliderSubmitType();
+        
+        if ($type == Catalin_SEO_Model_System_Config_Source_Slider_Submit_Type::SUBMIT_BUTTON) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
