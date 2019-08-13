@@ -11,7 +11,7 @@
  * http://opensource.org/licenses/osl-3.0.php
  *
  * @package     Catalin_Seo
- * @copyright   Copyright (c) 2012 Catalin Ciobanu
+ * @copyright   Copyright (c) 2013 Catalin Ciobanu
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Catalin_SEO_Model_Catalog_Resource_Layer_Filter_Attribute extends Mage_Catalog_Model_Resource_Layer_Filter_Attribute
@@ -40,7 +40,8 @@ class Catalin_SEO_Model_Catalog_Resource_Layer_Filter_Attribute extends Mage_Cat
             $connection->quoteInto("{$tableAlias}.store_id = ?", $collection->getStoreId()),
         );
 
-        $options = $attribute->getSource()->getAllOptions(false);
+        $attrUrlKeyModel = Mage::getResourceModel('catalin_seo/attribute_urlkey');
+        //$options = $attribute->getSource()->getAllOptions(false);
         if (!is_array($value)) {
             foreach ($options as $option) {
                 if ($option['label'] == $value) {
@@ -51,11 +52,7 @@ class Catalin_SEO_Model_Catalog_Resource_Layer_Filter_Attribute extends Mage_Cat
         } else {
             $conditions[] = "{$tableAlias}.value in ( ";
             foreach ($value as $v) {
-                foreach ($options as $option) {
-                    if ($option['label'] == $v) {
-                        $v = $option['value'];
-                    }
-                }
+                $v = $attrUrlKeyModel->getOptionId($attribute->getId(), $v);
                 $conditions[count($conditions) - 1] .= $connection->quoteInto("?", $v) . ' ,';
             }
             $conditions[count($conditions) - 1] = rtrim($conditions[count($conditions) - 1], ',');

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+    <modules>
+        <Catalin_SEO>
+            <version>2.0.0</version>
+        </Catalin_SEO>
+    </modules>
     <global>
-        <modules>
-            <Catalin_SEO>
-                <version>1.0.0</version>
-            </Catalin_SEO>
-        </modules>
         <models>
             <catalog>
                 <rewrite>
+                    <layer>Catalin_SEO_Model_Catalog_Layer</layer>
                     <layer_filter_item>Catalin_SEO_Model_Catalog_Layer_Filter_Item</layer_filter_item>
                     <layer_filter_category>Catalin_SEO_Model_Catalog_Layer_Filter_Category</layer_filter_category>
                     <layer_filter_attribute>Catalin_SEO_Model_Catalog_Layer_Filter_Attribute</layer_filter_attribute>
@@ -16,6 +17,7 @@
             </catalog>
             <catalogsearch>
                 <rewrite>
+                    <layer>Catalin_SEO_Model_CatalogSearch_Layer</layer>
                     <layer_filter_attribute>Catalin_SEO_Model_CatalogSearch_Layer_Filter_Attribute</layer_filter_attribute>
                 </rewrite>
             </catalogsearch>
@@ -26,8 +28,24 @@
             </catalog_resource>
             <catalin_seo>
                 <class>Catalin_SEO_Model</class>
+                <resourceModel>catalin_seo_resource</resourceModel>
             </catalin_seo>
+            <catalin_seo_resource>
+                <class>Catalin_SEO_Model_Resource</class>
+                <entities>
+                    <attribute_url_key>
+                        <table>catalin_seo_attribute_url_key</table>
+                    </attribute_url_key>
+                </entities>
+            </catalin_seo_resource>
         </models>
+        <resources>
+            <catalin_seo_setup>
+                <setup>
+                    <module>Catalin_SEO</module>
+                </setup>
+            </catalin_seo_setup>
+        </resources>
         <blocks>
             <catalog>
                 <rewrite>
@@ -61,6 +79,13 @@
                 </observers>
             </controller_front_init_routers>
         </events>
+        <index>
+            <indexer>
+                <catalin_seo_attribute>
+                    <model>catalin_seo/indexer_attribute</model>
+                </catalin_seo_attribute>
+            </indexer>
+        </index>
     </global>
     <frontend>
         <routers>

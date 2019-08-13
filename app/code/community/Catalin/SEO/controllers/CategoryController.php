@@ -11,7 +11,7 @@
  * http://opensource.org/licenses/osl-3.0.php
  *
  * @package     Catalin_Seo
- * @copyright   Copyright (c) 2012 Catalin Ciobanu
+ * @copyright   Copyright (c) 2013 Catalin Ciobanu
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 require_once 'Mage/Catalog/controllers/CategoryController.php';
@@ -65,7 +65,7 @@ class Catalin_Seo_CategoryController extends Mage_Catalog_CategoryController
 
             if (($root = $this->getLayout()->getBlock('root'))) {
                 $root->addBodyClass('categorypath-' . $category->getUrlPath())
-                        ->addBodyClass('category-' . $category->getUrlKey());
+                    ->addBodyClass('category-' . $category->getUrlKey());
             }
 
             $this->_initLayoutMessages('catalog/session');

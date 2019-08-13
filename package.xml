@@ -1,183 +1,27 @@
 <?xml version="1.0"?>
 <package>
     <name>Catalin_Seo</name>
-    <version>1.2.1</version>
+    <version>2.0.0</version>
     <stability>stable</stability>
     <license uri="http://opensource.org/licenses/osl-3.0.php">OSL</license>
     <channel>community</channel>
     <extends/>
-    <summary>ajax, seo urls, price slider, multiple selection for the same attribute.</summary>
-    <description>&lt;h2&gt;Layered Navigation SEO&lt;/h2&gt;&#xD;
-&lt;p&gt;ajax, seo urls, price slider, multiple selection for the same attribute.&lt;/p&gt;&#xD;
+    <summary>Layered Navigation SEO: ajax, seo urls, price slider, multiple filters for the same attribute.</summary>
+    <description>&lt;p&gt;ajax, seo urls, price slider, multiple selection for the same attribute.&lt;/p&gt;&#xD;
 &lt;h2&gt;Features&lt;/h2&gt;&#xD;
 &lt;ul&gt;&#xD;
-&lt;li&gt;ajax navigation&lt;/li&gt;&#xD;
-&lt;li&gt;simple price slider&lt;/li&gt;&#xD;
+&lt;li&gt;ajax navigation using history pushState/popState (only for HTML5 browsers)&lt;/li&gt;&#xD;
+&lt;li&gt;price slider with auto update or submit button&lt;/li&gt;&#xD;
 &lt;li&gt;SEO URLs (http://www.example.com/apparel/shoes/list/color/Brown,Blue/shoe_type/Sandal.html)&lt;/li&gt;&#xD;
 &lt;li&gt;multiple filters for the same attribute&lt;/li&gt;&#xD;
 &lt;/ul&gt;&#xD;
-&lt;p&gt;All the above features can be enabled/disabled from backend from "System -&gt; Configuration -&gt; Catalin SEO -&gt; Catalog Layered Navigation"&lt;/p&gt;&#xD;
-&lt;h2&gt;Known Issues&lt;/h2&gt;&#xD;
-&lt;ul&gt;&#xD;
-&lt;li&gt;In the attribute values "," (comma) and "/" (slash) cannot be used.&lt;/li&gt;&#xD;
-&lt;/ul&gt;
-    </description>
-    <notes>ajax, seo urls, price slider, multiple selection for the same attribute.</notes>
-    <authors>
-        <author>
-            <name>Catalin Ciobanu</name>
-            <user>catalin_ciobanu</user>
-            <email>ciobanu.catalin@yahoo.com</email>
-        </author>
-    </authors>
-    <date>2012-12-14</date>
-    <time>18:31:03</time>
-    <contents>
-        <target name="magecommunity">
-            <dir name="Catalin">
-                <dir name="SEO">
-                    <dir name="Block">
-                        <dir name="Catalog">
-                            <dir name="Layer">
-                                <dir name="Filter">
-                                    <file name="Attribute.php" hash="b0fb7deaeec0d46bc170e510c3d6f73a"/>
-                                    <file name="Price.php" hash="73fe2b9d21dab816474ee8d662a530bd"/>
-                                </dir>
-                                <file name="State.php" hash="fece6cd5534ae48f0f9f9233a7f714af"/>
-                            </dir>
-                            <dir name="Product">
-                                <dir name="List">
-                                    <file name="Pager.php" hash="5f41fc06bddb70fc2f7de3792c933879"/>
-                                    <file name="Toolbar.php" hash="6db34892e1937dd1e527c8ac2fda4746"/>
-                                </dir>
-                            </dir>
-                        </dir>
-                        <dir name="CatalogSearch">
-                            <dir name="Layer">
-                                <dir name="Filter">
-                                    <file name="Attribute.php" hash="120da8cc984bf1d55428ee4cfeaedca5"/>
-                                </dir>
-                            </dir>
-                        </dir>
-                    </dir>
-                    <dir name="Controller">
-                        <file name="Router.php" hash="71c67346a0c3e89775e5d7762c8a3588"/>
-                    </dir>
-                    <dir name="Helper">
-                        <file name="Data.php" hash="47a5e37ea96a12615ad1818f919d634f"/>
-                    </dir>
-                    <dir name="Model">
-                        <dir name="Catalog">
-                            <dir name="Layer">
-                                <dir name="Filter">
-                                    <file name="Attribute.php" hash="cd5ef92601544ed236617881b0dd6352"/>
-                                    <file name="Category.php" hash="bc5df542ef28c4e7a9583ae441c550c8"/>
-                                    <file name="Item.php" hash="9d89a99bebad467ca14e50333c556649"/>
-                                </dir>
-                            </dir>
-                            <dir name="Resource">
-                                <dir name="Layer">
-                                    <dir name="Filter">
-                                        <file name="Attribute.php" hash="ab59cb798f1069786a98408f6ebaf948"/>
-                                    </dir>
-                                </dir>
-                            </dir>
-                        </dir>
-                        <dir name="CatalogSearch">
-                            <dir name="Layer">
-                                <dir name="Filter">
-                                    <file name="Attribute.php" hash="137c0b3795d3eea4da8442db3e05e7a0"/>
-                                </dir>
-                            </dir>
-                        </dir>
-                        <dir name="System">
-                            <dir name="Config">
-                                <dir name="Backend">
-                                    <dir name="Seo">
-                                        <file name="Catalog.php" hash="ea4cd41cf4e919935919585a22dfea29"/>
-                                    </dir>
-                                </dir>
-                                <dir name="Source">
-                                    <dir name="Slider">
-                                        <dir name="Submit">
-                                            <file name="Type.php" hash="6d656f04657b303f989022ee305e6b00"/>
-                                        </dir>
-                                    </dir>
-                                </dir>
-                            </dir>
-                        </dir>
-                    </dir>
-                    <dir name="controllers">
-                        <file name="CategoryController.php" hash="3f3404592e64ffc3d3e302a92e76dc06"/>
-                        <file name="ResultController.php" hash="660c07990539e5605112cb42e24c02d6"/>
-                    </dir>
-                    <dir name="etc">
-                        <file name="adminhtml.xml" hash="240f607b0156d1de84667b382ba3f73c"/>
-                        <file name="config.xml" hash="9e2487e6c0eb5b09c43f65c01db3d882"/>
-                        <file name="system.xml" hash="9fd01148901e15950868e312b96dbfde"/>
-                    </dir>
-                </dir>
-            </dir>
-        </target>
-        <target name="mageskin">
-            <dir name="frontend">
-                <dir name="default">
-                    <dir name="default">
-                        <dir name="css">
-                            <dir name="price_slider">
-                                <file name="style.css" hash="61d0b59ed239bc64deaf4aed969652cd"/>
-                            </dir>
-                        </dir>
-                        <dir name="images">
-                            <dir name="price_slider">
-                                <file name="bkg_slider.png" hash="1b7a1eb7add1d2b2002501f4602c3d3e"/>
-                                <file name="slider.png" hash="d77b417b68ba91402c3b7180b165110c"/>
-                            </dir>
-                        </dir>
-                    </dir>
-                </dir>
-            </dir>
-        </target>
-        <target name="mageetc">
-            <dir name="modules">
-                <file name="Catalin_SEO.xml" hash="e0ad01abfe976aefb6587fcfb3bf0d2b"/>
-            </dir>
-        </target>
-        <target name="magedesign">
-            <dir name="frontend">
-                <dir name="default">
-                    <dir name="default">
-                        <dir name="template">
-                            <dir name="catalin_seo">
-                                <dir>
-                                    <dir name="catalog">
-                                        <dir name="layer">
-                                            <file name="filter.phtml" hash="dd1d3278e691814f0cd242179e5bf53f"/>
-                                            <file name="price.phtml" hash="19f1583df9e7f14d81318c633b334a88"/>
-                                            <file name="view.phtml" hash="bc5f21109be4dab996b152e7a756fe03"/>
-                                        </dir>
-                                        <dir name="product">
-                                            <file name="list.phtml" hash="bd332a192ed36c56c00968e13b599cd3"/>
-                                        </dir>
-                                    </dir>
-                                </dir>
-                            </dir>
-                        </dir>
-                        <dir name="layout">
-                            <file name="catalin_seo.xml" hash="61db4d9d696f2d12c562ae70a5164e4c"/>
-                        </dir>
-                    </dir>
-                </dir>
-            </dir>
-        </target>
-    </contents>
+&lt;p&gt;All the above features can be enabled/disabled from backend from "System -&gt; Configuration -&gt; Catalin SEO -&gt; Catalog Layered Navigation"&lt;/p&gt;</description>
+    <notes>- Fixed the issue: in attribute values "," (comma) and "/" (slash) cannot be used.&#xD;
+- Disabled History for browsers HTML4 browsers.</notes>
+    <authors><author><name>Catalin Ciobanu</name><user>catalin_ciobanu</user><email>ciobanu.catalin@yahoo.com</email></author></authors>
+    <date>2013-01-26</date>
+    <time>13:46:10</time>
+    <contents><target name="magecommunity"><dir name="Catalin"><dir name="SEO"><dir name="Block"><dir name="Catalog"><dir name="Layer"><dir name="Filter"><file name="Attribute.php" hash="decdc5633827964ff7aba28f8e8f89ff"/><file name="Price.php" hash="fb413c30cfd742818757beb88264fd68"/></dir><file name="State.php" hash="fd21c5a6603427ae81e7eddbef3d827f"/></dir><dir name="Product"><dir name="List"><file name="Pager.php" hash="7720a417475b5a512d383fd06242e43a"/><file name="Toolbar.php" hash="1624c89efb4f94ed1f35622c70fd3d9a"/></dir></dir></dir><dir name="CatalogSearch"><dir name="Layer"><dir name="Filter"><file name="Attribute.php" hash="008e737de084f5a400518bda4dda09f8"/></dir></dir></dir></dir><dir name="Controller"><file name="Router.php" hash="959ddeb429ee3ce85c5b8d9e24e01dc0"/></dir><dir name="Helper"><file name="Data.php" hash="fe35a0e29057133e6e9d2ca1a7dbddc6"/></dir><dir name="Model"><dir name="Catalog"><dir name="Layer"><dir name="Filter"><file name="Attribute.php" hash="17dde650381b5a65dd1c3fc6d942bb2a"/><file name="Category.php" hash="5a5b4213e521b0fd33cc7623435dd3aa"/><file name="Item.php" hash="293783ab05520a197ff02ad44bdd9ed6"/></dir></dir><file name="Layer.php" hash="32e0397c7eea8dacc421f3f2e1b5273a"/><dir name="Resource"><dir name="Layer"><dir name="Filter"><file name="Attribute.php" hash="7f235b63e342d77b18da3ffffd97de10"/></dir></dir></dir></dir><dir name="CatalogSearch"><dir name="Layer"><dir name="Filter"><file name="Attribute.php" hash="9dda0e593ace29efbba4c84b683d9377"/></dir></dir><file name="Layer.php" hash="3f980ee1a82354d0bd65edde410a2818"/></dir><dir name="Indexer"><file name="Attribute.php" hash="9d5bd74b9c9204c4aee3fd6f0478688b"/></dir><dir name="Resource"><dir name="Attribute"><file name="Urlkey.php" hash="485538d19fad7b7b5b647feb220e5c03"/></dir><dir name="Indexer"><file name="Attribute.php" hash="645ebc0fe5ee7a461c06d805a529b678"/></dir></dir><dir name="System"><dir name="Config"><dir name="Backend"><dir name="Seo"><file name="Catalog.php" hash="233ca11b938d6198b5a4400a2c5e1d61"/></dir></dir><dir name="Source"><dir name="Slider"><dir name="Submit"><file name="Type.php" hash="cb2383c3568982b09e4878735e598fca"/></dir></dir></dir></dir></dir></dir><dir name="controllers"><file name="CategoryController.php" hash="64cf21a1dfef461a2bf52c7a184192c8"/><file name="ResultController.php" hash="fdecd53c83673edf32e768737492aee4"/></dir><dir name="etc"><file name="adminhtml.xml" hash="240f607b0156d1de84667b382ba3f73c"/><file name="config.xml" hash="f492966665665d3594f5a84ace4b4abd"/><file name="system.xml" hash="92e698eebc986af7d98f9676138730cd"/></dir><dir name="sql"><dir name="catalin_seo_setup"><file name="install-2.0.0.php" hash="1f1e47269b9658b4a3f53cb17ba728e1"/></dir></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="default"><dir name="default"><dir name="layout"><file name="catalin_seo.xml" hash="17f80ca298cc0093ef29f69d02e8117b"/></dir><dir name="template"><dir name="catalin_seo"><dir><dir name="catalog"><dir name="layer"><file name="filter.phtml" hash="dd1d3278e691814f0cd242179e5bf53f"/><file name="price.phtml" hash="e853f8d1045abd7fa45051eb87fc1ba0"/><file name="view.phtml" hash="bc5f21109be4dab996b152e7a756fe03"/></dir><dir name="product"><file name="list.phtml" hash="9dd7e5ffd7a994a5036bf4eb378c8178"/></dir></dir></dir></dir></dir></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="default"><dir name="default"><dir name="css"><dir name="price_slider"><file name="style.css" hash="61d0b59ed239bc64deaf4aed969652cd"/></dir></dir><dir name="images"><dir name="price_slider"><file name="bkg_slider.png" hash="1b7a1eb7add1d2b2002501f4602c3d3e"/><file name="slider.png" hash="d77b417b68ba91402c3b7180b165110c"/></dir></dir><dir name="js"><dir name="catalin_seo"><file name="native.history.js" hash="ee04bc106db73bdbe17a0eac44497df1"/></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Catalin_SEO.xml" hash="e0ad01abfe976aefb6587fcfb3bf0d2b"/></dir></target></contents>
     <compatible/>
-    <dependencies>
-        <required>
-            <php>
-                <min>5.2.0</min>
-                <max>6.0.0</max>
-            </php>
-        </required>
-    </dependencies>
+    <dependencies><required><php><min>5.2.0</min><max>6.0.0</max></php></required></dependencies>
 </package>

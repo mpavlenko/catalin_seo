@@ -11,7 +11,7 @@
  * http://opensource.org/licenses/osl-3.0.php
  *
  * @package     Catalin_Seo
- * @copyright   Copyright (c) 2012 Catalin Ciobanu
+ * @copyright   Copyright (c) 2013 Catalin Ciobanu
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Catalin_SEO_Model_Catalog_Layer_Filter_Attribute extends Mage_Catalog_Model_Layer_Filter_Attribute
@@ -49,9 +49,12 @@ class Catalin_SEO_Model_Catalog_Layer_Filter_Attribute extends Mage_Catalog_Mode
         $this->_values = explode(Catalin_SEO_Helper_Data::MULTIPLE_FILTERS_DELIMITER, $filter);
 
         if (!empty($this->_values)) {
+            $attrUrlKeyModel = Mage::getResourceModel('catalin_seo/attribute_urlkey');
             $this->_getResource()->applyFilterToCollection($this, $this->_values);
             foreach ($this->_values as $filter) {
-                $this->getLayer()->getState()->addFilter($this->_createItem($filter, $filter));
+                $optionId = $attrUrlKeyModel->getOptionId($this->getAttributeModel()->getId(), $filter);
+                $text = $this->_getOptionText($optionId);
+                $this->getLayer()->getState()->addFilter($this->_createItem($text, $filter));
                 // process all items if multiple choice is enabled
                 if (!Mage::helper('catalin_seo')->isMultipleChoiceFiltersEnabled()) {
                     $this->_items = array();
@@ -80,6 +83,7 @@ class Catalin_SEO_Model_Catalog_Layer_Filter_Attribute extends Mage_Catalog_Mode
         $data = $this->getLayer()->getAggregator()->getCacheData($key);
 
         if ($data === null) {
+            $attrUrlKeyModel = Mage::getResourceModel('catalin_seo/attribute_urlkey');
             $options = $attribute->getFrontend()->getSelectOptions();
             $optionsCount = $this->_getResource()->getCount($this);
             $data = array();
@@ -93,14 +97,14 @@ class Catalin_SEO_Model_Catalog_Layer_Filter_Attribute extends Mage_Catalog_Mode
                         if (!empty($optionsCount[$option['value']])) {
                             $data[] = array(
                                 'label' => $option['label'],
-                                'value' => $option['label'],
+                                'value' => $attrUrlKeyModel->getUrlKey($attribute->getId(), $option['value']),
                                 'count' => $optionsCount[$option['value']],
                             );
                         }
                     } else {
                         $data[] = array(
                             'label' => $option['label'],
-                            'value' => $option['label'],
+                            'value' => $attrUrlKeyModel->getUrlKey($attribute->getId(), $option['value']),
                             'count' => isset($optionsCount[$option['value']]) ? $optionsCount[$option['value']] : 0,
                         );
                     }
@@ -114,6 +118,7 @@ class Catalin_SEO_Model_Catalog_Layer_Filter_Attribute extends Mage_Catalog_Mode
             $tags = $this->getLayer()->getStateTags($tags);
             $this->getLayer()->getAggregator()->saveCacheData($data, $key, $tags);
         }
+        
         return $data;
     }
 

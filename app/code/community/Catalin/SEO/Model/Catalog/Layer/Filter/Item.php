@@ -11,7 +11,7 @@
  * http://opensource.org/licenses/osl-3.0.php
  *
  * @package     Catalin_Seo
- * @copyright   Copyright (c) 2012 Catalin Ciobanu
+ * @copyright   Copyright (c) 2013 Catalin Ciobanu
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Catalin_SEO_Model_Catalog_Layer_Filter_Item extends Mage_Catalog_Model_Layer_Filter_Item
@@ -41,6 +41,8 @@ class Catalin_SEO_Model_Catalog_Layer_Filter_Item extends Mage_Catalog_Model_Lay
         $values = $this->getFilter()->getValues();
         if (!empty($values)) {
             $tmp = array_merge($values, array($this->getValue()));
+            // Sort filters - small SEO improvement
+            asort($tmp);
             $values = implode(Catalin_SEO_Helper_Data::MULTIPLE_FILTERS_DELIMITER, $tmp);
         } else {
             $values = $this->getValue();
