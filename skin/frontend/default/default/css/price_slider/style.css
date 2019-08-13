@@ -4,7 +4,7 @@ div.price-slider {
 }
 div.price-slider .filter-handle {
     height: 17px;
-    width: 17px;
+    width: 10px;
     cursor: e-resize;
     display: block;
 }
@@ -12,7 +12,7 @@ div.price-slider .price-slider-from {
     background: url("../../images/price_slider/slider.png") no-repeat scroll 0 0 transparent;
 }
 div.price-slider .price-slider-to {
-    background: url("../../images/price_slider/slider.png") no-repeat scroll -19px 0 transparent;
+    background: url("../../images/price_slider/slider.png") no-repeat scroll -26px 0 transparent;
     cursor: w-resize;
     margin-top: -17px;
 }
