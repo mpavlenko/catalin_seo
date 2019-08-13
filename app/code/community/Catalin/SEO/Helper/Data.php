@@ -5,14 +5,14 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the Open Software License (OSL 3.0)
+ * This source file is subject to the MIT License (MIT)
  * that is bundled with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
+ * https://opensource.org/licenses/MIT
  *
  * @package     Catalin_Seo
- * @copyright   Copyright (c) 2015 Catalin Ciobanu
- * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @copyright   Copyright (c) 2016 Catalin Ciobanu
+ * @license     https://opensource.org/licenses/MIT  MIT License (MIT)
  */
 class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
 {
@@ -21,6 +21,7 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
      */
 
     const MULTIPLE_FILTERS_DELIMITER = ',';
+    const REL_NOFOLLOW = 'rel="nofollow"';
 
     /**
      * Check if module is enabled or not
@@ -177,7 +178,7 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
      * Checks for Enterprise and if it is, checks for the dot
      * before returning
      * @param  string $suffix
-     * @param  srting $urlParts
+     * @param  string $urlParts
      * @return string
      */
     public function getUrlBody($suffix, $urlParts) {
@@ -501,6 +502,13 @@ class Catalin_SEO_Helper_Data extends Mage_Core_Helper_Data
         }
 
         return "js/catalin_seo/handler.js";
+    }
+
+    public function getNofollow()
+    {
+        if(Mage::getStoreConfigFlag('catalin_seo/catalog/nofollow')){
+            return self::REL_NOFOLLOW;
+        }
     }
 
 }

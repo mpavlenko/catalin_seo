@@ -5,14 +5,14 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the Open Software License (OSL 3.0)
+ * This source file is subject to the MIT License (MIT)
  * that is bundled with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
+ * https://opensource.org/licenses/MIT
  *
  * @package     Catalin_Seo
- * @copyright   Copyright (c) 2015 Catalin Ciobanu
- * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @copyright   Copyright (c) 2016 Catalin Ciobanu
+ * @license     https://opensource.org/licenses/MIT  MIT License (MIT)
  */
 require_once 'Mage/Catalog/controllers/CategoryController.php';
 
@@ -43,7 +43,7 @@ class Catalin_Seo_CategoryController extends Mage_Catalog_CategoryController
             $update->addHandle($category->getLayoutUpdateHandle());
             $update->addHandle('CATEGORY_' . $category->getId());
             // apply custom ajax layout
-            if ($this->getRequest()->isAjax()) {
+            if (Mage::helper('catalin_seo')->isAjaxEnabled() && $this->getRequest()->isAjax()) {
                 $update->addHandle('catalog_category_layered_ajax_layer');
             }
             $this->loadLayoutUpdates();
@@ -72,7 +72,7 @@ class Catalin_Seo_CategoryController extends Mage_Catalog_CategoryController
             $this->_initLayoutMessages('checkout/session');
 
             // return json formatted response for ajax
-            if ($this->getRequest()->isAjax()) {
+            if (Mage::helper('catalin_seo')->isAjaxEnabled() && $this->getRequest()->isAjax()) {
                 
                 if(Mage::getEdition() == Mage::EDITION_ENTERPRISE){
                     $block = $this->getLayout()->getBlock('enterprisecatalog.leftnav');

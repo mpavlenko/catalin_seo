@@ -5,14 +5,14 @@
  *
  * NOTICE OF LICENSE
  *
- * This source file is subject to the Open Software License (OSL 3.0)
+ * This source file is subject to the MIT License (MIT)
  * that is bundled with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
+ * https://opensource.org/licenses/MIT
  *
  * @package     Catalin_Seo
- * @copyright   Copyright (c) 2015 Catalin Ciobanu
- * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @copyright   Copyright (c) 2016 Catalin Ciobanu
+ * @license     https://opensource.org/licenses/MIT  MIT License (MIT)
  */
 class Catalin_SEO_Model_Catalog_Layer_Filter_Category extends Mage_Catalog_Model_Layer_Filter_Category
 {
@@ -65,6 +65,8 @@ class Catalin_SEO_Model_Catalog_Layer_Filter_Category extends Mage_Catalog_Model
                     $urlKey = $category->getUrlKey();
                     if (empty($urlKey)) {
                         $urlKey = $category->getId();
+                    } else {
+                        $urlKey = $category->getId() . '-' . $urlKey;
                     }
 
                     $data[] = array(
@@ -98,10 +100,12 @@ class Catalin_SEO_Model_Catalog_Layer_Filter_Category extends Mage_Catalog_Model
             return $this;
         }
 
+        $parts = explode('-', $filter);
+
         // Load the category filter by url_key
         $this->_appliedCategory = Mage::getModel('catalog/category')
             ->setStoreId(Mage::app()->getStore()->getId())
-            ->loadByAttribute('url_key', $filter);
+            ->loadByAttribute('url_key', $parts[0]);
 
         // Extra check in case it is a category id and not url key
         if (!($this->_appliedCategory instanceof Mage_Catalog_Model_Category)) {

@@ -56,16 +56,26 @@ var CatalinSeoHandler = {
                     self.toggleContent();
                     self.alignProductGridActions();
                     self.blockCollapsing();
+
+                    if (ConfigurableSwatchesList) {
+                        setTimeout(function(){
+                            $j(document).trigger('product-media-loaded');
+                        }, 0);
+                    }
                 } else {
                     $('ajax-errors').show();
                 }
                 $('loading').hide();
-            }
+            },
+            onComplete: CatalinSeoHandler.sendUpdateEvent
         });
 
         if (event) {
             event.preventDefault();
         }
+    },
+    sendUpdateEvent: function() {
+        $j(document).trigger('catalin:updatePage');
     },
     pushState: function (data, link, replace) {
         var History = window.History;
@@ -150,6 +160,12 @@ var CatalinSeoHandler = {
                         self.toggleContent();
                         self.alignProductGridActions();
                         self.blockCollapsing();
+
+                        if (ConfigurableSwatchesList) {
+                            setTimeout(function(){
+                                $j(document).trigger('product-media-loaded');
+                            }, 0);
+                        }
                     }
                 });
             })(window.History);
