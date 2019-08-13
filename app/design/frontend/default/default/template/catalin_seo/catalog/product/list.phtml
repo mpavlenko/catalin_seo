@@ -115,6 +115,19 @@
 <?php if ($this->helper('catalin_seo')->isAjaxEnabled() && !$this->getRequest()->isAjax()): ?>
 <script type="text/javascript">
     //<![CDATA[
+    function pushState(data, link, replace) {
+        var History = window.History;
+        if ( !History.enabled ) {
+            return false;
+        }
+
+        if (replace) {
+            History.replaceState(data, document.title, link);
+        } else {
+            History.pushState(data, document.title, link);
+        }
+    }
+    
     function handleEvent(el, event) {
         var link;
         if (typeof el === 'string') {
@@ -125,7 +138,7 @@
             link = $(el).getValue();
         }
 
-        <?php // Add this parameter for full page caching systems ?>
+        <?php // Add this to query string for full page caching systems ?>
         if (link.indexOf('?') != -1) {
             link = link + '&isLayerAjax=1';
         } else {
@@ -135,12 +148,18 @@
         $('loading').show();
         $('ajax-errors').hide();
         
+        pushState(null, link, false);
+        
         new Ajax.Request(link, {
             method: 'get',
             onSuccess: function(transport) {
                 if (transport.responseJSON) {                    
                     $('catalog-listing').update(transport.responseJSON.listing);
                     $('layered-navigation').update(transport.responseJSON.layer);
+                    pushState({
+                        listing: transport.responseJSON.listing,
+                        layer: transport.responseJSON.layer
+                    }, link, true);
                     ajaxListener();
                 } else {
                     $('ajax-errors').show();
@@ -175,6 +194,27 @@
     }
     document.observe("dom:loaded", function() {
         ajaxListener();
+        
+        (function(History) {
+            if ( !History.enabled ) {
+                return false;
+            }
+
+            pushState({
+                listing: $('catalog-listing').innerHTML,
+                layer: $('layered-navigation').innerHTML
+            }, document.location.href, true);
+
+            // Bind to StateChange Event
+            History.Adapter.bind(window, 'popstate', function(event) {
+                if (event.type == 'popstate') {
+                    var State = History.getState();
+                    $('catalog-listing').update(State.data.listing);
+                    $('layered-navigation').update(State.data.layer);
+                    ajaxListener();
+                }                
+            });
+        })(window.History);
     });
     //]]>
 </script>

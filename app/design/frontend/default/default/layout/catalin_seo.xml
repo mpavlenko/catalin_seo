@@ -6,6 +6,10 @@
                 <type>skin_css</type>
                 <name>css/price_slider/style.css</name>
             </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/catalin_seo/native.history.js</name>
+            </action>
         </reference>
         <reference name="product_list_toolbar">
             <block type="catalin_seo/catalog_product_list_pager" name="product_list_toolbar_pager"/>
@@ -34,6 +38,10 @@
             <action method="addItem">
                 <type>skin_css</type>
                 <name>css/price_slider/style.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/catalin_seo/native.history.js</name>
             </action>
         </reference>
         <reference name="search_result_list">
