@@ -1,34 +1,22 @@
-README
-================
+## Original Package Description
 
-Requirements
-------------
+Layered Navigation SEO: ajax, seo urls, price slider, multiple filters for the same attribute.
 
-The supported Magento version is 1.9.x
 
-Features
-----------------
+## Disclaimer
 
-- ajax navigation using history pushState/popState
-- price slider with submit button
-- SEO URLs (http://www.example.com/men/shirts/filter/fit/regular,sharp/sleeve_length/long-sleeve.html)
-- multiple filters for the same attribute
-- supports Magento Configurable Swatches
-- possibility to add "nofollow" on layered navigation pages
+This is a Repository imported from the Magento Marketplace, formerly known as Magento connect.
+The purpose is, to archive them in a permanent way, you can read more about it in our blogbost: https://openmage.github.io/2019/08/18/new-home-magento-connect-modules.html
+There is a chance, this repository misses some of the newer version.
+We rely on our users to inform us about newer Releases. And if they can provide them to us, this would be even better.
 
-All the above features can be enabled/disabled from backend: "System -> Configuration -> Catalin SEO -> Catalog Layered Navigation"
+### The original source is already on a public Git?
 
-Install via Modman
-----------------
+Please also inform us about them, then we can mark our repository as discontinued and refer to the other Repository.
 
-You can install this module using [Colin Mollenhour's](https://github.com/colinmollenhour) [Modman tool](https://github.com/colinmollenhour/modman).
+### Contact us
 
-```bash
-$ modman init
-$ modman clone https://github.com/caciobanu/improved-magento-layered-navigation.git
-```
+the easiest way is to create an Issue here, we have an eye on them.
 
-Contribution
-------------
-
-To contribute please issue pull requests to the `develop` branch _only_. New releases will be merged to feature branches. Bugfixes are hotfix patched to both `master` and `develop`.
+Alternative you can try to contact @Flyingmana directly.
+ 

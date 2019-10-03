@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Catalin_Seo",
+    "name": "OpenMageModuleFostering\/Catalin_Seo",
     "type": "magento-module",
     "license": "MIT",
     "homepage": "",
     "description": "Layered Navigation SEO: ajax, seo urls, price slider, multiple filters for the same attribute.",
     "authors": [
-    {
-        "name": "Catalin Ciobanu",
-        "email": "caciobanu@gmail.com"
-    }
-],
+        {
+            "name": "Catalin Ciobanu",
+            "email": "caciobanu@gmail.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
