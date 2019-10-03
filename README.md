@@ -1,3 +1,5 @@
+
+
 ## Original Package Description
 
 Layered Navigation SEO: ajax, seo urls, price slider, multiple filters for the same attribute.
