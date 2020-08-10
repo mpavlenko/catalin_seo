@@ -4,6 +4,7 @@
     "license": "MIT",
     "homepage": "",
     "description": "Layered Navigation SEO: ajax, seo urls, price slider, multiple filters for the same attribute.",
+    "extra": { "package-xml": "package.xml" },
     "authors": [
         {
             "name": "Catalin Ciobanu",
